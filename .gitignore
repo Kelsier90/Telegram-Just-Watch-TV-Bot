@@ -1,3 +1,4 @@
+/.vscode
 *.pyc
 __ pycache __
 db.sqlite3
