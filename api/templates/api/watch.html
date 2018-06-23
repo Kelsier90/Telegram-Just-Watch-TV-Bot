@@ -1,0 +1,20 @@
+{% load dict_filters %}
+<i>{{item.object_type|capfirst}}</i>: <b>{{item.title}}</b> ({{item|lookup:"original_release_year"}}) {% if item|lookup:"runtime" %}{{item|lookup:"runtime"}} min{% endif %}
+{% for score in item.scoring %}{% if score.provider_type == 'imdb:score' %}Imdb <b>{{score.value}}</b> {% elif score.provider_type == 'tomato:meter' %}Rotten tomatoes <b>{{score.value}}</b> {% elif score.provider_type == 'metacritic:score' %}Metacritic <b>{{score.value}}</b> {% endif %}{% endfor %}
+
+Director:{% for director in directors %} {{director.name}}{% if not forloop.last %},{% endif %}{% endfor %}
+
+Actors:{% for actor in actors %} {{actor.name}}{% if not forloop.last %},{% endif %}{% endfor %}
+
+{{item|lookup:"short_description"}}
+
+Available in:
+{% for offer in item.offers %}<a href="{{offer.urls|lookup:"standard_web"}}">
+    {{offer.provider_clear_name}}</a> {{offer.presentation_type|upper}} {{offer|lookup:"monetization_type"}} {{offer|lookup:"retail_price"}} {{offer|lookup:"currency"}}
+{% empty %}
+    Not available online
+{% endfor %}
+
+Result for country: <b>{{country}}</b>. 
+Type /country &lt;country 2 letters ISO code&gt; to change it and run again this command for see results for this country
+for example: "/country ES" for set Spain country

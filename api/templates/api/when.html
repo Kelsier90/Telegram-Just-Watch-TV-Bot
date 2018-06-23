@@ -1,0 +1,12 @@
+<i>Show</i>: <b>{{show_name}}</b> Status <b>{{show_status}}</b>
+
+{{show_summary}}
+
+{% if has_next_episode %}
+<b>NEXT EPISODE:</b>
+Name <b>{{next_episode_name}}</b> Duration <b>{{next_episode_runtime}} min</b>
+Season <b>{{next_episode_season}}</b> Episode <b>{{next_episode_number}}</b>
+Air date <b>{{next_episode_airdatetime}} ({{next_episode_airdatetime|timeuntil}})</b>
+{% else %}
+<b>There is no release date for new episodes</b>
+{% endif %}
