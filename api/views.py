@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from .libs.justwatch_api import JustWatch
-from .models import TelegramUser, TelegramBotCommand
+from .models import TelegramUser
 
 import telepot
 from telepot.routing import by_command
@@ -255,8 +255,8 @@ def telegram_bot(request, token):
                     'last_name': update_user_from.get('last_name', ''),
                 },
             )
-            if user:
-                TelegramBotCommand.objects.create(user=user, command=command_sent)
+            user.last_command = command_sent
+            user.save()
     else:
         return JsonResponse({'ok': False, 'message': 'Nothing to do.'})
     response = func(request, bot, message, command[1][0], user=user)

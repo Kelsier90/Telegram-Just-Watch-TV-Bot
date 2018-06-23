@@ -11,6 +11,7 @@ pytvmaze = "*"
 requests = "*"
 django-dotenv = "*"
 gunicorn = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 
