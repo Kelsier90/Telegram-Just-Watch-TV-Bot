@@ -3,6 +3,6 @@
 __ pycache __
 db.sqlite3
 bot_db.sqlite3
-/static
+/static/*
 .DS_Store
 .env
