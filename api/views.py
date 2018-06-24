@@ -247,7 +247,7 @@ def telegram_bot(request, token):
     }
     user = None
     if isinstance(command[0], str):
-        func = av_commands.get(command[0].replace('@'+BOT_USERNAME, '').lower(), _invalid_command)
+        func = av_commands.get(command[0].lower().replace('@'+BOT_USERNAME.lower(), ''), _invalid_command)
         if message.get('from', None):
             user, user_created = TelegramUser.objects.get_or_create(
                 id=update_user_from['id'],

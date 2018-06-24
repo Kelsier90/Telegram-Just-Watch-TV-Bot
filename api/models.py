@@ -9,7 +9,7 @@ class TelegramUser(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     last_command = models.CharField(max_length=500, null=True)
-    country = models.CharField(max_length=2, default='GB')
+    country = models.CharField(max_length=2, default='ES')
     last_activity = models.DateTimeField(auto_now=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
