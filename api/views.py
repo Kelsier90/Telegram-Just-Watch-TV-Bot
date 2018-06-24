@@ -23,7 +23,7 @@ from pytvmaze.exceptions import ShowNotFound
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT_USERNAME = 'JustWatchTvBot'
 PARAM_ITEM='--item'
-DEFAULT_COUNTRY = 'GB'
+DEFAULT_COUNTRY = 'ES'
 
 # Create your views here.
 
@@ -224,7 +224,7 @@ def telegram_bot(request, token):
 
     if not command_sent:
         return JsonResponse({'ok': False, 'message': 'Nothing to do.'})
-        
+
     get_command = by_command(lambda msg_text: msg_text, pass_args=True)
     command = get_command(command_sent)
     """ 
