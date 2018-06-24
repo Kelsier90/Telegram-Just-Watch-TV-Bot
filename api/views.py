@@ -153,7 +153,7 @@ def _when(request, bot, update_message, params, **kwargs):
         return bot.sendMessage(update_message['chat']['id'], message, parse_mode="HTML", reply_markup=keyboard)
     except ShowNotFound:
         message = "{} not found.".format(query)
-        response = bot.sendMessage(update_message['chat']['id'], message)
+        return bot.sendMessage(update_message['chat']['id'], message)
 
 def _send_photo(request, bot, update_message, params, **kwargs):
     if len(params) < 1:
@@ -213,7 +213,7 @@ def telegram_bot(request, token):
     command_sent = ''
     if 'message' in update:
         message = update['message']
-        command_sent = message['text']
+        command_sent = message.get('text')
         update_user_from = message['from']
     elif 'callback_query' in update:
         message = update['callback_query']['message']
@@ -222,6 +222,9 @@ def telegram_bot(request, token):
     else:
         return JsonResponse({'ok': False, 'message': 'Nothing to do.'})
 
+    if not command_sent:
+        return JsonResponse({'ok': False, 'message': 'Nothing to do.'})
+        
     get_command = by_command(lambda msg_text: msg_text, pass_args=True)
     command = get_command(command_sent)
     """ 

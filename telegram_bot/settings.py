@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['still-springs-19611.herokuapp.com', '1646c3c3.ngrok.io']
+ALLOWED_HOSTS = ['still-springs-19611.herokuapp.com', '89f3e18d.ngrok.io']
 
 
 # Application definition
@@ -125,6 +125,3 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
